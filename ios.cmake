@@ -13,6 +13,7 @@ include(polly_init)
 include("${CMAKE_CURRENT_LIST_DIR}/os/iphone-default-sdk.cmake") # -> IOS_SDK_VERSION
 
 set(POLLY_XCODE_COMPILER "clang")
+set(CMAKE_CXX_FLAGS "-Wno-shorten-64-to-32")
 polly_init(
   "iOS ${IOS_SDK_VERSION} Universal (iphoneos + iphonesimulator) / \
 ${POLLY_XCODE_COMPILER} / \
@@ -27,7 +28,8 @@ include(polly_fatal_error)
 include(polly_ios_bundle_identifier)
 set(CMAKE_MACOSX_BUNDLE YES)
 
-set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "iPhone Developer")
+set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGNING_REQUIRED "NO")
+set(CMAKE_XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY "")
 
 # 32 bits support was dropped from iPhoneSdk11.0
 if(IOS_SDK_VERSION VERSION_LESS "11.0")
